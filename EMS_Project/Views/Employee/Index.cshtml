@@ -12,6 +12,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Department</th>
+            <th>Actions</th>
         </tr>
         @foreach(var item in Model)
             {
@@ -19,6 +20,10 @@
                     <td>@item.Name</td>
                     <td>@item.Email</td>
                     <td>@item.Department.DeptName</td>
+                    <td>
+                        @Html.ActionLink("Edit","Edit", new {id =item.EmpId },new { @class="btn btn-info"})
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new {@class="btn btn-danger"})
+                    </td>
                 </tr>
             }
 </table>
