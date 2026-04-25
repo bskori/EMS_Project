@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EMS_Project
+namespace EMS_Project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,15 @@ namespace EMS_Project
         }
     
         public int EmpId { get; set; }
+
+        [Required(ErrorMessage ="Name is required")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage ="Email is required")]
+        [EmailAddress(ErrorMessage ="Invalid email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage ="Select Department")]
         public Nullable<int> DeptId { get; set; }
     
         public virtual Department Department { get; set; }

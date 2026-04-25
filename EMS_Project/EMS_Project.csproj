@@ -128,24 +128,25 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Department.cs">
+    <Compile Include="Models\Department.cs">
       <DependentUpon>EMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Employee.cs">
+    <Compile Include="Models\Employee.cs">
       <DependentUpon>EMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMSModel.Context.cs">
+    <Compile Include="Models\EMSModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EMSModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMSModel.cs">
+    <Compile Include="Models\EMSModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EMSModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EMSModel.Designer.cs">
+    <Compile Include="Models\EMSModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EMSModel.edmx</DependentUpon>
@@ -154,7 +155,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Salary.cs">
+    <Compile Include="Models\Salary.cs">
       <DependentUpon>EMSModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -163,12 +164,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EMSModel.Context.tt">
+    <Content Include="Models\EMSModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EMSModel.Context.cs</LastGenOutput>
       <DependentUpon>EMSModel.edmx</DependentUpon>
     </Content>
-    <Content Include="EMSModel.tt">
+    <Content Include="Models\EMSModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EMSModel.edmx</DependentUpon>
       <LastGenOutput>EMSModel.cs</LastGenOutput>
@@ -179,11 +180,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="EMSModel.edmx">
+    <EntityDeploy Include="Models\EMSModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EMSModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="EMSModel.edmx.diagram">
+    <Content Include="Models\EMSModel.edmx.diagram">
       <DependentUpon>EMSModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -211,10 +212,10 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

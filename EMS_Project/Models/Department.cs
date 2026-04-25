@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EMS_Project
+namespace EMS_Project.Models
 {
     using System;
     using System.Collections.Generic;
