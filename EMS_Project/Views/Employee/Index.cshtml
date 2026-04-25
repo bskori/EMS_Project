@@ -1,0 +1,24 @@
+﻿@model IEnumerable<EMS_Project.Models.Employee>
+
+@{
+    ViewBag.Title = "Employees List";
+}
+
+<h2 class="text-center text-primary">Employees List</h2>
+
+<table class="table table-bordered table-hover table-striped">
+    
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+        </tr>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Department.DeptName</td>
+                </tr>
+            }
+</table>

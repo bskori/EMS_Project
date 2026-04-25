@@ -10,6 +10,13 @@ namespace EMS_Project.Controllers
     public class EmployeeController : Controller
     {
         EMS_DBEntities db = new EMS_DBEntities();
+
+        public ActionResult Index()
+        {
+            var employees = db.Employees.Include("Department").ToList();
+            return View(employees);
+        }
+
         public ActionResult Create()
         {
             ViewBag.DeptId = new SelectList(db.Departments, "DeptId", "DeptName");
