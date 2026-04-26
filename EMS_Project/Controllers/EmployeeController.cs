@@ -11,9 +11,21 @@ namespace EMS_Project.Controllers
     {
         EMS_DBEntities db = new EMS_DBEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(string search, int? deptId)
         {
-            var employees = db.Employees.Include("Department").ToList();
+            var employees = db.Employees.Include("Department").AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                employees = employees.Where(x => x.Name.Contains(search));
+            }
+            if(deptId != null)
+            {
+                employees = employees.Where(x => x.DeptId == deptId);
+            }
+
+            ViewBag.Departments = new SelectList(db.Departments, "DeptId", "DeptName");
+
             return View(employees);
         }
 

@@ -6,24 +6,67 @@
 
 <h2 class="text-center text-primary">Employees List</h2>
 
-<table class="table table-bordered table-hover table-striped">
-    
+<div>
+    <input type="text" id="searchBox" placeholder="Search by name" class="form-control"  />
+
+    <select id="deptFilter" class="form-control" style="margin:1rem 0px">
+        <option value="">All Departments</option>
+        @foreach(var dept in ViewBag.Departments)
+            {
+                <option value="@dept.Value">@dept.Text</option>
+            }
+    </select>
+
+</div>
+
+<div id="employeeTable">
+    <table class="table table-bordered table-hover table-striped">
+
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Department</th>
             <th>Actions</th>
         </tr>
-        @foreach(var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Email</td>
-                    <td>@item.Department.DeptName</td>
-                    <td>
-                        @Html.ActionLink("Edit","Edit", new {id =item.EmpId },new { @class="btn btn-info"})
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new {@class="btn btn-danger"})
-                    </td>
-                </tr>
-            }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Department.DeptName</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+
+        $("#searchBox, #deptFilter").on("keyup change", function () {
+
+            var search = $("#searchBox").val();
+            var deptId = $("#deptFilter").val();
+
+            $.ajax({
+
+                url: "/Employee/Index",
+                type: "GET",
+                data: { search: search, deptId: deptId },
+                success: function (res) {
+                    $("#employeeTable").html($(res).find("#employeeTable").html());
+                },
+                error: function (err) {
+                    console.log("ERROR:" + err);
+                }
+            });
+
+        });
+
+    });
+</script>
+    }
