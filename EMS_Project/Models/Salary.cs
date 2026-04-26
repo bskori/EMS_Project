@@ -11,11 +11,16 @@ namespace EMS_Project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Salary
     {
         public int SalaryId { get; set; }
+
+        [Required(ErrorMessage ="Select Employee")]
         public Nullable<int> EmpId { get; set; }
+
+        [Required(ErrorMessage ="Salary is required")]
         public Nullable<decimal> BasicSalary { get; set; }
         public Nullable<decimal> HRA { get; set; }
         public Nullable<decimal> DA { get; set; }

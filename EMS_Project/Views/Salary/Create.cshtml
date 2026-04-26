@@ -1,0 +1,32 @@
+﻿@model EMS_Project.Models.Salary
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+
+    <h2 class="text-primary">Add Salary</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </p>
+
+        <div class="form-group">
+            <label>Employee</label>
+            @Html.DropDownList("EmpId", null, "--Select--", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.EmpId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <label>Basic Salary</label>
+            @Html.TextBoxFor(m => m.BasicSalary, new { @class = "form-control", placeholder = "Enter Salary" })
+            @Html.ValidationMessageFor(m => m.BasicSalary, "", new { @class = "text-danger" })
+        </div>
+        <br />
+            <button type="submit" class="btn btn-primary">Save</button>
+        }
+
+</div>
+
