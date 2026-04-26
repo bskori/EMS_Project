@@ -22,3 +22,40 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/*Dashboard design*/
+
+.dashboard-box {
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.panel-primary {
+    background: #1976d2;
+    border: none;
+}
+
+.panel-success {
+    background: #43a047;
+    border: none;
+}
+
+.panel-danger {
+    background: #e53935;
+    border: none;
+}
+
+.panel-warning {
+    background: #fb8c00;
+    border: none;
+}
+
+.dashboard-box h2 {
+    font-weight: bold;
+}
+
+.dashboard-box hr {
+    border-color: rgba(255,255,255,0.4);
+}
