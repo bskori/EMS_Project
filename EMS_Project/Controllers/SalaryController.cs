@@ -10,9 +10,9 @@ namespace EMS_Project.Controllers
     public class SalaryController : Controller
     {
         EMS_DBEntities db = new EMS_DBEntities();
-        public ActionResult Create()
+        public ActionResult Create(int? empId)
         {
-            ViewBag.EmpId = new SelectList(db.Employees, "EmpId", "Name");
+            ViewBag.EmpId = new SelectList(db.Employees, "EmpId", "Name", empId);
             return View();
         }
 

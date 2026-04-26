@@ -37,6 +37,7 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Add Salary", "Create","Salary", new {empId = item.EmpId}, new {@class ="btn btn-success"})
                 </td>
             </tr>
         }
