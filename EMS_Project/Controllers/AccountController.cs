@@ -29,7 +29,16 @@ namespace EMS_Project.Controllers
             {
                 Session["User"] = user.UserName;
                 Session["Role"] = user.Role;
-                return RedirectToAction("Index", "Employee");
+
+                if(user.Role == "Admin")
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Employee");
+                }
+
             }
 
             ViewBag.Error = "Invalid username or password";
