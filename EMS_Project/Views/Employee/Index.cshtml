@@ -42,7 +42,7 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Email</td>
-                <td>@item.Department.DeptName</td>
+                <td>@(item.Department.DeptName == null ? "No Department" : item.Department.DeptName )</td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
                     @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })

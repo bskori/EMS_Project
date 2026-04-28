@@ -12,6 +12,15 @@ namespace EMS_Project.Controllers
     {
         EMS_DBEntities db = new EMS_DBEntities();
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["User"] == null)
+            {
+                filterContext.Result = RedirectToAction("Login", "Account");
+            }
+            base.OnActionExecuting(filterContext);
+        }
+
         public ActionResult Index(string search, int? deptId, int? page, string sortOrder)
         {
             var employees = db.Employees.Include("Department").AsQueryable();

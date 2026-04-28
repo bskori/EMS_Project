@@ -1,0 +1,28 @@
+﻿@model EMS_Project.Models.User
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2 class="text-primary">Login</h2>
+
+@using (Html.BeginForm()) { 
+
+    <div class="form-group">
+        <label>Username</label>
+        @Html.TextBoxFor(m => m.UserName, new {@class="form-control"})
+        @Html.ValidationMessageFor(m => m.UserName, "", new {@class ="text-danger"})
+    </div>
+
+    <div>
+        <label>Password</label>
+        @Html.TextBoxFor(m => m.Password, new {@class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password, "", new { @class="text-danger"})
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Login</button>
+
+    <p style="color:red">@ViewBag.Error</p>
+
+}

@@ -14,28 +14,18 @@ namespace EMS_Project.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Department
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class User
 {
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Department()
-    {
+    public int UserId { get; set; }
 
-        this.Employees = new HashSet<Employee>();
-
-    }
-
-
-    public int DeptId { get; set; }
-
-    public string DeptName { get; set; }
-
-
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Employee> Employees { get; set; }
+    [Required(ErrorMessage ="Username is required")]
+    public string UserName { get; set; }
+    
+    [Required(ErrorMessage ="Password is required")]
+    public string Password { get; set; }
 
 }
 
