@@ -35,7 +35,7 @@
                     <h3><i class="glyphicon glyphicon-usd"></i></h3>
                     <h4>Highest Salary</h4>
                     <hr />
-                    <h2>@ViewBag.HighestSalary</h2>
+                    <h2>@(ViewBag.HighestSalary == 0 ? "No Data" : ViewBag.HighestSalary )</h2>
                 </div>
             </div>
         </div>

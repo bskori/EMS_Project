@@ -15,7 +15,7 @@ namespace EMS_Project.Controllers
         {
             ViewBag.TotalEmployees = db.Employees.Count();
             ViewBag.TotalDepartments = db.Departments.Count();
-            ViewBag.HighestSalary = db.Salaries.Max(s => s.GrossSalary);
+            ViewBag.HighestSalary = db.Salaries.Any() ? db.Salaries.Max(s => s.GrossSalary) : 0;
 
             var deptData = db.Departments.Select(d => new
             DeptEmployeeCountVM
