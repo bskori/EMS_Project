@@ -12,7 +12,7 @@ namespace EMS_Project.Controllers
     {
         EMS_DBEntities db = new EMS_DBEntities();
 
-        public ActionResult Index(string search, int? deptId, int? page)
+        public ActionResult Index(string search, int? deptId, int? page, string sortOrder)
         {
             var employees = db.Employees.Include("Department").AsQueryable();
 
@@ -30,7 +30,20 @@ namespace EMS_Project.Controllers
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
-            return View(employees.OrderBy(e => e.EmpId).ToPagedList(pageNumber,pageSize));
+            ViewBag.SortName = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    employees = employees.OrderByDescending(e => e.Name);
+                    break;
+
+                default:
+                    employees = employees.OrderBy(e => e.Name);
+                    break;
+            }
+
+            return View(employees.ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult Create()
