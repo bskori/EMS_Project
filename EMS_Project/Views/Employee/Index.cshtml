@@ -1,4 +1,6 @@
-﻿@model IEnumerable<EMS_Project.Models.Employee>
+﻿@using PagedList.Mvc;
+
+@model PagedList.IPagedList<EMS_Project.Models.Employee>
 
 @{
     ViewBag.Title = "Employees List";
@@ -42,6 +44,14 @@
             </tr>
         }
     </table>
+    <div class="text-center">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+   {
+       page,
+       search = Request.QueryString["search"],
+       deptId = Request.QueryString["deptId"]
+   }))
+    </div>
 </div>
 
 @section scripts{

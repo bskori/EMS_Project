@@ -1,4 +1,5 @@
 ﻿using EMS_Project.Models;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace EMS_Project.Controllers
     {
         EMS_DBEntities db = new EMS_DBEntities();
 
-        public ActionResult Index(string search, int? deptId)
+        public ActionResult Index(string search, int? deptId, int? page)
         {
             var employees = db.Employees.Include("Department").AsQueryable();
 
@@ -25,8 +26,11 @@ namespace EMS_Project.Controllers
             }
 
             ViewBag.Departments = new SelectList(db.Departments, "DeptId", "DeptName");
+            
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
 
-            return View(employees);
+            return View(employees.OrderBy(e => e.EmpId).ToPagedList(pageNumber,pageSize));
         }
 
         public ActionResult Create()
