@@ -25,6 +25,7 @@
     <table class="table table-bordered table-hover table-striped">
 
         <tr>
+            <th>Image</th>
             <th>
                 @Html.ActionLink("Name","Index", new
            {
@@ -39,7 +40,15 @@
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
+
+
+<tr>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.ImagePath)) 
+                    {
+                        <img src="@item.ImagePath" width="50" height="50" />
+                    }
+                </td>
                 <td>@item.Name</td>
                 <td>@item.Email</td>
                 <td>@(item.Department.DeptName == null ? "No Department" : item.Department.DeptName )</td>

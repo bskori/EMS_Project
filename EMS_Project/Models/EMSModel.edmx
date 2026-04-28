@@ -20,6 +20,7 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="DeptId" Type="int" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Salaries">
           <Key>
@@ -102,6 +103,7 @@
           <Property Name="DeptId" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK__Employees__DeptI__1273C1CD" FromRole="Employees" ToRole="Departments" />
           <NavigationProperty Name="Salaries" Relationship="Self.FK__Salaries__EmpId__164452B1" FromRole="Employees" ToRole="Salaries" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Salary">
           <Key>
@@ -180,6 +182,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EMS_DBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="EmpId" ColumnName="EmpId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

@@ -72,10 +72,20 @@ namespace EMS_Project.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Employee emp)
+        public ActionResult Create(Employee emp, HttpPostedFileBase ImageFile)
         {
             if (ModelState.IsValid)
             {
+                if(ImageFile != null)
+                {
+                    string fileName = System.IO.Path.GetFileName(ImageFile.FileName);
+                    string path = Server.MapPath("~/Images/" + fileName);
+
+                    ImageFile.SaveAs(path);
+
+                    emp.ImagePath = "/Images/" + fileName;
+                }
+
                 db.Employees.Add(emp);
                 db.SaveChanges();
                 return RedirectToAction("Index");

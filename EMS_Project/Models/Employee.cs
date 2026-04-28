@@ -35,6 +35,8 @@ public partial class Employee
 
     public Nullable<int> DeptId { get; set; }
 
+    public string ImagePath { get; set; }
+
 
 
     public virtual Department Department { get; set; }
