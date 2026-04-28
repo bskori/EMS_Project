@@ -18,6 +18,16 @@ namespace EMS_Project.Controllers
             {
                 filterContext.Result = RedirectToAction("Login", "Account");
             }
+
+            // Restrict Edit/Delete for non-admin
+            var action = filterContext.ActionDescriptor.ActionName;
+
+            if(Session["Role"]?.ToString() != "Admin" &&
+                action == "Edit" || action == "Delete")
+            {
+                filterContext.Result = RedirectToAction("Index");
+            }
+
             base.OnActionExecuting(filterContext);
         }
 
@@ -74,7 +84,7 @@ namespace EMS_Project.Controllers
             return View(emp);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             var emp = db.Employees.Find(id);
             ViewBag.DeptId = new SelectList(db.Departments, "DeptId", "DeptName", emp.DeptId);

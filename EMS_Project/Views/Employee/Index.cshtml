@@ -44,9 +44,12 @@
                 <td>@item.Email</td>
                 <td>@(item.Department.DeptName == null ? "No Department" : item.Department.DeptName )</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
-                    @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Add Salary", "Create","Salary", new {empId = item.EmpId}, new {@class ="btn btn-success"})
+                    @if (Session["Role"]?.ToString() == "Admin")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
+                                        }
+                    @Html.ActionLink("Add Salary", "Create", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-success" })
                 </td>
             </tr>
         }

@@ -28,6 +28,7 @@ namespace EMS_Project.Controllers
             if(user != null)
             {
                 Session["User"] = user.UserName;
+                Session["Role"] = user.Role;
                 return RedirectToAction("Index", "Employee");
             }
 
