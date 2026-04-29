@@ -12,6 +12,13 @@ namespace EMS_Project.Controllers
         EMS_DBEntities db = new EMS_DBEntities();
         public ActionResult Create(int? empId)
         {
+            var exists = db.Salaries.Any(s => s.EmpId == empId);
+
+            if (exists)
+            {
+                return RedirectToAction("Index", "Employee");
+            }
+
             var employeesWithoutSalary = db.Employees.Where(e => !db.Salaries.Any(s => s.EmpId == e.EmpId)).ToList();
 
             ViewBag.EmpId = new SelectList(employeesWithoutSalary, "EmpId", "Name", empId);
@@ -50,5 +57,16 @@ namespace EMS_Project.Controllers
             return View(sal);
         }
 
+        public ActionResult Details(int empId)
+        {
+            var salary = db.Salaries.FirstOrDefault(s => s.EmpId == empId);
+
+            if(salary == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(salary);
+        }
     }
 }

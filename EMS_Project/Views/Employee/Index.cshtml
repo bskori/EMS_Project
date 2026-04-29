@@ -2,21 +2,19 @@
 
 @model PagedList.IPagedList<EMS_Project.Models.Employee>
 
-@{
-    ViewBag.Title = "Employees List";
-}
+@{ ViewBag.Title = "Employees List"; }
 
 <h2 class="text-center text-primary">Employees List</h2>
 
 <div>
-    <input type="text" id="searchBox" placeholder="Search by name" class="form-control"  />
+    <input type="text" id="searchBox" placeholder="Search by name" class="form-control" />
 
     <select id="deptFilter" class="form-control" style="margin:1rem 0px">
         <option value="">All Departments</option>
-        @foreach(var dept in ViewBag.Departments)
-            {
-                <option value="@dept.Value">@dept.Text</option>
-            }
+        @foreach (var dept in ViewBag.Departments)
+        {
+<option value="@dept.Value">@dept.Text</option>
+}
     </select>
 
 </div>
@@ -27,12 +25,12 @@
         <tr>
             <th>Image</th>
             <th>
-                @Html.ActionLink("Name","Index", new
-           {
-               sortOrder = ViewBag.SortName,
-               search = Request.QueryString["search"],
-               deptId= Request.QueryString["deptId"]
-           })
+                @Html.ActionLink("Name", "Index", new
+                {
+                    sortOrder = ViewBag.SortName,
+                    search = Request.QueryString["search"],
+                    deptId = Request.QueryString["deptId"]
+                })
             </th>
             <th>Email</th>
             <th>Department</th>
@@ -43,60 +41,78 @@
 
 
 <tr>
-                <td>
-                    @if (!string.IsNullOrEmpty(item.ImagePath)) 
-                    {
-                        <img src="@item.ImagePath" width="50" height="50" />
-                    }
-                </td>
-                <td>@item.Name</td>
-                <td>@item.Email</td>
-                <td>@(item.Department.DeptName == null ? "No Department" : item.Department.DeptName )</td>
-                <td>
-                    @if (Session["Role"]?.ToString() == "Admin")
-                    {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
-                                        }
-                    @Html.ActionLink("Add Salary", "Create", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-success" })
-                </td>
-            </tr>
+    <td>
+        @if (!string.IsNullOrEmpty(item.ImagePath))
+        {
+<img src="@item.ImagePath" width="50" height="50" />}
+    </td>
+    <td>@item.Name</td>
+    <td>@item.Email</td>
+    <td>@(item.Department.DeptName == null ? "No Department" : item.Department.DeptName )</td>
+    <td>
+        @if (Session["Role"]?.ToString() == "Admin")
+        {
+
+            @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-info" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger" })
+
+            if (item.Salaries.Count == 0)
+            {
+                                             
+                @Html.ActionLink("Add Salary", "Create", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-success" })
+            
+            }
+            else
+            {
+
+                @Html.ActionLink("View Salary", "Details", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-info" })
+            }
+
         }
+        else
+        {
+            if(item.Salaries.Count != 0)
+            {
+                @Html.ActionLink("View Salary", "Details", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-info" })
+            }
+        }
+    </td>
+</tr>}
     </table>
     <div class="text-center">
         @Html.PagedListPager(Model, page => Url.Action("Index", new
-   {
-       page,
-       search = Request.QueryString["search"],
-       deptId = Request.QueryString["deptId"]
-   }))
+        {
+            page,
+            search = Request.QueryString["search"],
+            deptId = Request.QueryString["deptId"]
+        }))
     </div>
 </div>
 
 @section scripts{
-<script>
-    $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-        $("#searchBox, #deptFilter").on("keyup change", function () {
+            $("#searchBox, #deptFilter").on("keyup change", function () {
 
-            var search = $("#searchBox").val();
-            var deptId = $("#deptFilter").val();
+                var search = $("#searchBox").val();
+                var deptId = $("#deptFilter").val();
 
-            $.ajax({
+                $.ajax({
 
-                url: "/Employee/Index",
-                type: "GET",
-                data: { search: search, deptId: deptId },
-                success: function (res) {
-                    $("#employeeTable").html($(res).find("#employeeTable").html());
-                },
-                error: function (err) {
-                    console.log("ERROR:" + err);
-                }
+                    url: "/Employee/Index",
+                    type: "GET",
+                    data: { search: search, deptId: deptId },
+                    success: function (res) {
+                        $("#employeeTable").html($(res).find("#employeeTable").html());
+                    },
+                    error: function (err) {
+                        console.log("ERROR:" + err);
+                    }
+                });
+
             });
 
         });
-
-    });
-</script>
-    }
+    </script>
+}

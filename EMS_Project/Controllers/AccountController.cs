@@ -44,5 +44,10 @@ namespace EMS_Project.Controllers
             ViewBag.Error = "Invalid username or password";
             return View();
         }
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
     }
 }

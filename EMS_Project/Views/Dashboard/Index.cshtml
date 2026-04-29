@@ -46,7 +46,7 @@
                     <h3><i class="glyphicon glyphicon-stats"></i></h3>
                     <h4>Departments Overview</h4>
                     <hr />
-                    <h2> _ </h2>
+                    <h2> @ViewBag.TotalDepartments </h2>
                 </div>
             </div>
         </div>
@@ -61,14 +61,14 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Department</th>
+                <th class="text-center">Department</th>
                 <th class="text-center">Employee Count</th>
             </tr>
         </thead>
         <tbody>
             @foreach(var item in Model)
             {
-                <tr>
+                <tr class="text-center">
                     <td>@item.DeptName</td>
                     <td>@item.Count</td>
                 </tr>

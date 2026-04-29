@@ -1,0 +1,70 @@
+﻿@model EMS_Project.Models.Salary
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container" style="margin-top:2rem">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div>
+                <h2 class="text-info">Salary Details</h2>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BasicSalary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BasicSalary)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.HRA)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.HRA)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DA)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DA)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PF)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.PF)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GrossSalary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GrossSalary)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Employee.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Employee.Name)
+                    </dd>
+
+                </dl>
+            </div>
+            <p>
+                @Html.ActionLink("Back to List", "Index","Employee", null, new { @class="btn btn-default"})
+            </p>
+
+        </div>
+    </div>
+</div>

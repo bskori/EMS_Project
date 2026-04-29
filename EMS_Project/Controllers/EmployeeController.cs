@@ -23,7 +23,7 @@ namespace EMS_Project.Controllers
             var action = filterContext.ActionDescriptor.ActionName;
 
             if(Session["Role"]?.ToString() != "Admin" &&
-                action == "Edit" || action == "Delete")
+                (action == "Edit" || action == "Delete"))
             {
                 filterContext.Result = RedirectToAction("Index");
             }
@@ -114,6 +114,7 @@ namespace EMS_Project.Controllers
             return View(emp);
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             var emp = db.Employees.Find(id);
@@ -124,7 +125,13 @@ namespace EMS_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var emp = db.Employees.Find(id);
+            var emp = db.Employees.Include("Salaries").FirstOrDefault(e => e.EmpId == id);
+
+            if (emp.Salaries.Any())
+            {
+                db.Salaries.RemoveRange(emp.Salaries);
+            }
+
             db.Employees.Remove(emp);
             db.SaveChanges();
 
