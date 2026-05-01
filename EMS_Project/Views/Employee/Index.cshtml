@@ -7,14 +7,19 @@
 <h2 class="text-center text-primary">Employees List</h2>
 
 <div>
-    <input type="text" id="searchBox" placeholder="Search by name" class="form-control" />
+    @if (Session["Role"]?.ToString() == "Admin")
+    {
+        @Html.ActionLink("Add New Employee", "Create", null, new { @class = "btn btn-success", style = "margin-bottom:10px;" })
+    }
+
+    <p><input type="text" id="searchBox" placeholder="Search by name" class="form-control" /></p>
 
     <select id="deptFilter" class="form-control" style="margin:1rem 0px">
         <option value="">All Departments</option>
         @foreach (var dept in ViewBag.Departments)
         {
-<option value="@dept.Value">@dept.Text</option>
-}
+            <option value="@dept.Value">@dept.Text</option>
+        }
     </select>
 
 </div>
