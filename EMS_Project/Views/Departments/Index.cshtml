@@ -10,14 +10,20 @@
             <h2 class="text-center text-primary">Department List</h2>
 
             <p>
-                @Html.ActionLink("Add New Department", "Create",null, new { @class="btn btn-success"})
+                @if (Session["Role"]?.ToString() == "Admin")
+                {
+                    @Html.ActionLink("Add New Department", "Create", null, new { @class = "btn btn-success" })
+                }
             </p>
             <table class="table table-bordered table-striped table-hover text-center">
-                <tr >
+                <tr>
                     <th class="text-center">
                         Department
                     </th>
-                    <th class="text-center">Actions</th>
+                    @if (Session["Role"]?.ToString() == "Admin")
+                    {
+                        <th class="text-center">Actions</th>
+                    }
                 </tr>
 
                 @foreach (var item in Model)
@@ -26,10 +32,13 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.DeptName)
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.DeptId }, new { @class="btn btn-primary"}) 
-                            @Html.ActionLink("Delete", "Delete", new { id = item.DeptId }, new { @class ="btn btn-danger"})
-                        </td>
+                            @if (Session["Role"]?.ToString() == "Admin")
+                            {
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.DeptId }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.DeptId }, new { @class = "btn btn-danger" })
+                                </td>
+                            }
                     </tr>
                 }
 

@@ -75,6 +75,10 @@
             {
                 @Html.ActionLink("View Salary", "Details", "Salary", new { empId = item.EmpId }, new { @class = "btn btn-info" })
             }
+            else 
+            { 
+                <p class="text-danger">Not Created!!</p>
+            }
         }
     </td>
 </tr>}
