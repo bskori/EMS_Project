@@ -14,8 +14,9 @@ namespace EMS_Project.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Department
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Department
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +29,8 @@ public partial class Department
 
 
     public int DeptId { get; set; }
-
+    
+    [Required(ErrorMessage ="Department name is required")]
     public string DeptName { get; set; }
 
 

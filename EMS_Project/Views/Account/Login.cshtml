@@ -29,7 +29,7 @@
 
                 <div class="form-group">
                     <label>Password</label>
-                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                 </div>
 

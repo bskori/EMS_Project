@@ -14,8 +14,9 @@ namespace EMS_Project.Models
 
 using System;
     using System.Collections.Generic;
-    
-public partial class Employee
+    using System.ComponentModel.DataAnnotations;
+
+    public partial class Employee
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,13 +29,17 @@ public partial class Employee
 
 
     public int EmpId { get; set; }
-
+    
+    [Required(ErrorMessage ="Employee name is required")]
     public string Name { get; set; }
 
+    [Required(ErrorMessage ="Email address is required")]
+    [EmailAddress(ErrorMessage ="Invalid email")]
     public string Email { get; set; }
-
+    
+    [Required(ErrorMessage ="Select Department")]
     public Nullable<int> DeptId { get; set; }
-
+    
     public string ImagePath { get; set; }
 
 
