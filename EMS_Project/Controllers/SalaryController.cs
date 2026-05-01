@@ -21,7 +21,7 @@ namespace EMS_Project.Controllers
 
             var employeesWithoutSalary = db.Employees.Where(e => !db.Salaries.Any(s => s.EmpId == e.EmpId)).ToList();
 
-            ViewBag.EmpId = new SelectList(employeesWithoutSalary, "EmpId", "Name", empId);
+            //ViewBag.EmpId = new SelectList(employeesWithoutSalary, "EmpId", "Name", empId);
             return View();
         }
 
@@ -53,7 +53,7 @@ namespace EMS_Project.Controllers
             }
             var employeesWithoutSalary = db.Employees.Where(e => !db.Salaries.Any(s => s.EmpId == e.EmpId)).ToList();
 
-            ViewBag.EmpId = new SelectList(employeesWithoutSalary, "EmpId", "Name", sal.EmpId);
+            //ViewBag.EmpId = new SelectList(employeesWithoutSalary, "EmpId", "Name", sal.EmpId);
             return View(sal);
         }
 

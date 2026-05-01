@@ -13,12 +13,14 @@
         <p>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         </p>
+        @Html.HiddenFor(m => m.EmpId)
 
-        <div class="form-group">
+
+        @*<div class="form-group">
             <label>Employee</label>
             @Html.DropDownList("EmpId", null, "--Select--", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.EmpId, "", new { @class = "text-danger" })
-        </div>
+        </div>*@
         <div class="form-group">
             <label>Basic Salary</label>
             @Html.TextBoxFor(m => m.BasicSalary, new { @class = "form-control", placeholder = "Enter Salary" })
